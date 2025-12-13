@@ -1,0 +1,47 @@
+title-text: ""
+desktop-image: "background.png"
+desktop-image-scale-method: "stretch"
+desktop-color: "#1E1E2E"
+terminal-font: "Unifont Regular 16"
+terminal-left: "0"
+terminal-top: "0"
+terminal-width: "100%"
+terminal-height: "100%"
+terminal-border: "0"
+
++ image {
+  left = 50%-300
+  top = 10%
+  width = 600
+  height = 600
+  file = "logo.png"
+}
+
++ boot_menu {
+  left = 50%-240
+  top = 60%
+  width = 480
+  height = 320
+  item_font = "Unifont Regular 16"
+  item_color = "#CDD6F4"
+  selected_item_color = "#CBA6F7"
+  icon_width = 32
+  icon_height = 32
+  item_icon_space = 20
+  item_height = 40
+  item_padding = 8
+  item_spacing = 10
+  selected_item_pixmap_style = "select_*.png"
+}
+
++ label {
+  left = 50%-192
+  top = 85%
+  width = 384
+  align = "center"
+  id = "__timeout__"
+  text = "Booting in %d seconds"
+  font = "Unifont Regular 16"
+  color = "#CDD6F4"
+}
+

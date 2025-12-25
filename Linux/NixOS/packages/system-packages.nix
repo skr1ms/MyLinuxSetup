@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -57,5 +57,30 @@
     
     # Torrent
     qbittorrent
+
+    # yandex music tui
+    (pkgs.buildGoModule rec {
+      pname = "yamusic-tui";
+      version = "0.7.1";
+
+      src = pkgs.fetchFromGitHub {
+        owner = "DECE2183";
+        repo  = "yamusic-tui";
+        rev   = "v${version}";
+        hash  = "sha256-OYQpOUrphIIXcQHtzX5lrfEUM7KNY50kaHHln9ya3Z8=";
+      };
+
+      vendorHash = "sha256-x1dYqdsJtcankWjoq94CbBDx5iaroN+2aN/QoByq2t0=";
+
+      nativeBuildInputs = [ pkgs.pkg-config ];
+      buildInputs       = [ pkgs.alsa-lib ];
+
+      meta = with lib; {
+        description = "An unofficial Yandex Music terminal client";
+        homepage    = "https://github.com/DECE2183/yamusic-tui";
+        license     = licenses.gpl3Plus;
+      };
+    })
   ];
 }
+

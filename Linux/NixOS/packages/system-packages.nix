@@ -58,6 +58,13 @@
     # Torrent
     qbittorrent
 
+    # wine
+    (pkgs.wineWowPackages.staging.override {
+      waylandSupport = true;
+    })
+    winetricks
+    protontricks 
+
     # yandex music tui
     (pkgs.buildGoModule rec {
       pname = "yamusic-tui";

@@ -9,6 +9,7 @@ in
 
     systemd = {
       enable = false;
+      target = "graphical-session.target";
     };
 
     cli = {
@@ -17,8 +18,7 @@ in
     };
 
     settings = {
-      paths.wallpaperDir = "~/Pictures/Wallpapers";
-
+      # --- General ---
       general.apps = {
         terminal = [ "foot" ];
         audio    = [ "pavucontrol" ];
@@ -51,8 +51,52 @@ in
         criticalLevel = 3;
       };
 
+      general.idle = {
+        lockBeforeSleep = true;
+        inhibitWhenAudio = true;
+        timeouts = [
+            { timeout = 180; idleAction = "lock"; }
+            { timeout = 300; idleAction = "dpms off"; returnAction = "dpms on"; }
+            { timeout = 600; idleAction = [ "systemctl" "suspend-then-hibernate" ]; }
+        ];
+      };
+
+      # --- Appearance ---
+      appearance = {
+        anim.durations.scale = 1;
+        padding.scale = 1;
+        rounding.scale = 1;
+        spacing.scale = 1;
+        
+        font = {
+          family = {
+            clock    = "JetBrains Mono";
+            material = "Material Symbols Rounded";
+            mono     = "JetBrainsMono Nerd Font";
+            sans     = "JetBrains Mono";
+          };
+          size.scale = 1;
+        };
+
+        transparency = {
+            enabled = true;
+            base = 0.85;
+            layers = 0.4;
+        };
+      };
+
+      # --- Paths ---
+      paths = {
+        wallpaperDir = "~/Pictures/Wallpapers";
+        # mediaGif = "root:/assets/bongocat.gif"; 
+        # sessionGif = "root:/assets/kurukuru.gif";
+      };
+
+      # --- Bar ---
       bar = {
         persistent = true;
+        dragThreshold = 20;
+        showOnHover = true;
 
         entries = [
           { id = "logo";         enabled = true; }
@@ -66,13 +110,25 @@ in
           { id = "power";        enabled = true; }
         ];
 
+        popouts = {
+            activeWindow = true;
+            statusIcons = true;
+            tray = true;
+        };
+
         workspaces = {
           activeIndicator = true;
+          activeLabel = "󰮯";
           activeTrail = false;
+          label = "  ";
           occupiedBg = false;
+          occupiedLabel = "󰮯";
           perMonitorWorkspaces = true;
           showWindows = true;
           shown = 5;
+          specialWorkspaceIcons = [
+              { name = "steam"; icon = "sports_esports"; }
+          ];
         };
 
         status = {
@@ -85,13 +141,46 @@ in
           showLockStatus = true;
         };
 
+        tray = {
+            background = false;
+            compact = false;
+            iconSubs = [];
+            recolour = false;
+        };
+
         scrollActions = {
           brightness = true;
           workspaces = true;
           volume = true;
         };
+        
+        excludedScreens = [ "" ];
+        activeWindow.inverted = false;
+        clock.showIcon = true;
       };
 
+      # --- Background ---
+      background = {
+          enabled = true;
+          desktopClock.enabled = false;
+          visualiser = {
+              blur = false;
+              enabled = false;
+              autoHide = true;
+              rounding = 1;
+              spacing = 1;
+          };
+      };
+
+      # --- Dashboard ---
+      dashboard = {
+          enabled = true;
+          dragThreshold = 50;
+          mediaUpdateInterval = 500;
+          showOnHover = true;
+      };
+
+      # --- OSD ---
       osd = {
         enabled = true;
         enableBrightness = true;
@@ -99,13 +188,7 @@ in
         hideDelay = 2000;
       };
 
-      appearance.font.family = {
-        clock    = "JetBrains Mono";
-        material = "Material Symbols Rounded";
-        mono     = "JetBrainsMono Nerd Font";
-        sans     = "JetBrains Mono";
-      };
-
+      # --- Session ---
       session = {
         enabled = true;
         dragThreshold = 30;
@@ -115,8 +198,116 @@ in
           shutdown = [ "systemctl" "poweroff" ];
           suspend  = [ "systemctl" "suspend" ];
           reboot   = [ "systemctl" "reboot" ];
+          hibernate = [ "systemctl" "hibernate" ]; 
         };
       };
+
+      # --- Services ---
+      services = {
+        audioIncrement = 0.1;
+        maxVolume = 1.0;
+        defaultPlayer = "Spotify";
+        gpuType = "";
+        playerAliases = [{ from = "com.github.th_ch.youtube_music"; to = "YT Music"; }];
+        weatherLocation = "Moscow";
+        useFahrenheit = false;
+        useTwelveHourClock = false;
+        smartScheme = true;
+        visualiserBars = 45;
+      };
+
+      # --- Launcher ---
+      launcher = {
+        actionPrefix = ">";
+        dragThreshold = 50;
+        vimKeybinds = false;
+        enableDangerousActions = false;
+        maxShown = 7;
+        maxWallpapers = 9;
+        specialPrefix = "@";
+        showOnHover = false;
+        hiddenApps = [];
+        
+        useFuzzy = {
+            apps = false;
+            actions = false;
+            schemes = false;
+            variants = false;
+            wallpapers = false;
+        };
+
+        actions = [
+            {
+                name = "Calculator";
+                icon = "calculate";
+                description = "Do simple math equations (powered by Qalc)";
+                command = ["autocomplete" "calc"];
+                enabled = true;
+                dangerous = false;
+            }
+            {
+                name = "Scheme";
+                icon = "palette";
+                description = "Change the current colour scheme";
+                command = ["autocomplete" "scheme"];
+                enabled = true;
+                dangerous = false;
+            }
+            {
+                name = "Wallpaper";
+                icon = "image";
+                description = "Change the current wallpaper";
+                command = ["autocomplete" "wallpaper"];
+                enabled = true;
+                dangerous = false;
+            }
+        ];
+      };
+
+      # --- Sidebar ---
+      sidebar = {
+          dragThreshold = 80;
+          enabled = true;
+      };
+
+      # --- Utilities & Notifs ---
+      utilities = {
+        enabled = true;
+        maxToasts = 4;
+        toasts = {
+            audioInputChanged = true;
+            audioOutputChanged = true;
+            capsLockChanged = true;
+            chargingChanged = true;
+            configLoaded = true;
+            dndChanged = true;
+            gameModeChanged = true;
+            kbLayoutChanged = true;
+            numLockChanged = true;
+            vpnChanged = true;
+            nowPlaying = true;
+        };
+        vpn = {
+            enabled = false;
+            provider = [];
+        };
+      };
+
+      notifs = {
+          actionOnClick = false;
+          clearThreshold = 0.3;
+          defaultExpireTimeout = 5000;
+          expandThreshold = 20;
+          openExpanded = false;
+          expire = false;
+      };
+      
+      border = {
+        rounding = 25;
+        thickness = 10;
+      };
+      
+      lock.recolourLogo = false;
     };
   };
 

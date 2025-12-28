@@ -79,5 +79,10 @@
     hypridle
     hyprpaper
     uwsm
+
+    # games
+    bottles
+    lutris
+    heroic
   ];
 }

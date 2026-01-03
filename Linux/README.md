@@ -41,6 +41,7 @@ This configuration includes support for NVIDIA GPUs but requires manual activati
 
 Uncomment the NVIDIA drivers section in your config file before installation:
 
+```
 services.xserver.videoDrivers = [ "nvidia" ];
 
 hardware.nvidia = {
@@ -51,6 +52,7 @@ hardware.nvidia = {
   nvidiaSettings = true;
   package = config.boot.kernelPackages.nvidiaPackages.stable;
 };
+```
 
 ### Password Configuration
 

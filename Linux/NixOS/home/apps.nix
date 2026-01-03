@@ -81,7 +81,6 @@
     uwsm
 
     # games
-    bottles
     lutris
     heroic
   ];

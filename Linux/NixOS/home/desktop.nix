@@ -5,8 +5,8 @@
     enable = true;
 
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      name = "breeze-dark";
+      package = pkgs.kdePackages.breeze-icons;
     };
 
     theme = {
@@ -31,7 +31,7 @@
   qt = {
     enable = true;
     platformTheme.name = "gtk";
-    style.name = "adwaita-dark";
+    style.name = "breeze";
   };
 
   dconf.settings = {

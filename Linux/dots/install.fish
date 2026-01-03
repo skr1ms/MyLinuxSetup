@@ -68,6 +68,12 @@ if confirm-overwrite $cfg/fastfetch
     cp -r $src/fastfetch $cfg/fastfetch
 end
 
+# Thunar
+if confirm-overwrite $cfg/Thunar
+    mkdir -p $cfg
+    cp -r $src/thunar $cfg/Thunar
+end
+
 # Uwsm
 if confirm-overwrite $cfg/uwsm
     mkdir -p $cfg
@@ -80,12 +86,28 @@ if confirm-overwrite $cfg/btop
     cp -r $src/btop $cfg/btop
 end
 
+echo "Configuring Flatpak..."
+if command -q flatpak
+    echo "Adding Flathub repository..."
+    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+    echo "Checking Bottles..."
+    if not flatpak list --app | grep -q com.usebottles.bottles
+        echo "Installing Bottles..."
+        sudo flatpak install -y flathub com.usebottles.bottles
+    else
+        echo "Bottles is already installed."
+    end
+else
+    echo "Flatpak is not installed! Enable 'services.flatpak.enable = true' in your NixOS config first."
+end
+
 if confirm-overwrite $cfg/nvim
     echo "Cleaning all Neovim data..."
     rm -rf ~/.local/share/nvim
     rm -rf ~/.local/state/nvim
     rm -rf ~/.cache/nvim
-    
+
     mkdir -p $cfg
     cp -r $src/nvim $cfg/nvim
     echo "Neovim config installed. Run 'nvim' to download plugins."

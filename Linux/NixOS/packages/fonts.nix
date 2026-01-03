@@ -18,10 +18,8 @@
       noto-fonts-color-emoji
       google-fonts
       cascadia-code
-      material-design-icons
       material-symbols
       nerd-fonts.symbols-only
-      papirus-icon-theme
     ];
 
     fontconfig = {

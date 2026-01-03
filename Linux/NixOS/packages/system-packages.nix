@@ -1,7 +1,16 @@
 { pkgs, lib, ... }:
 
 {
+  environment.pathsToLink = [ "/share/icons" ];
+
   environment.systemPackages = with pkgs; [
+    # Icons
+    kdePackages.breeze-icons
+    adwaita-icon-theme
+    hicolor-icon-theme
+    papirus-icon-theme
+    material-design-icons
+
     # System utilities
     steam-run
     acpi
@@ -92,4 +101,3 @@
     })
   ];
 }
-

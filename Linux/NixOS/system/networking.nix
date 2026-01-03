@@ -15,8 +15,6 @@
         networkmanager-openconnect
       ];
     };
-
-    wireless.enable = false;
     
     nameservers = [ "8.8.8.8" "1.1.1.1" "77.88.8.8" ];
     

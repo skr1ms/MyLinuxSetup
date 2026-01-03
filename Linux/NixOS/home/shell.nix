@@ -120,7 +120,7 @@ in
           activeIndicator = true;
           activeLabel = "󰮯";
           activeTrail = false;
-          label = "  ";
+          label = "  ";
           occupiedBg = false;
           occupiedLabel = "󰮯";
           perMonitorWorkspaces = true;
@@ -313,3 +313,4 @@ in
 
   home.packages = [ quickshellPkg ];
 }
+

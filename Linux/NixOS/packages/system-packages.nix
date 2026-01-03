@@ -41,6 +41,7 @@
     zip
     rar
     trash-cli
+    cloc
     
     # CLI utilities
     tree
@@ -53,6 +54,7 @@
     # System monitoring
     btop
     htop
+    neohtop
     glances
     
     # Torrent

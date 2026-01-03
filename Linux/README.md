@@ -33,6 +33,25 @@ This package requires VPN/VPS connection for installation within the Russian Fed
 - **Strategy**: Configured with `fake,multidisorder` strategy which works on most Russian ISPs (including MGTS/GPON).
 - **Customization**: If you experience issues, edit `NFQWS_OPT_DESYNC` in `services/zapret.nix`.
 
+### GPU Configuration (NVIDIA / AMD)
+
+This configuration includes support for NVIDIA GPUs but requires manual activation depending on your hardware.
+
+**Location**: `system/hardware.nix` (or wherever you placed the GPU config)
+
+Uncomment the NVIDIA drivers section in your config file before installation:
+
+services.xserver.videoDrivers = [ "nvidia" ];
+
+hardware.nvidia = {
+  modesetting.enable = true;
+  powerManagement.enable = false;
+  powerManagement.finegrained = false;
+  open = false;
+  nvidiaSettings = true;
+  package = config.boot.kernelPackages.nvidiaPackages.stable;
+};
+
 ### Password Configuration
 
 **CRITICAL**: Change the default user password before system installation.

@@ -42,8 +42,8 @@
 
     # Zapret for russian users
     # Based on 
-    # https://github.com/kartavkun/zapret-discord-youtube
-    # https://github.com/bol-van/zapret
+    # [https://github.com/kartavkun/zapret-discord-youtube](https://github.com/kartavkun/zapret-discord-youtube)
+    # [https://github.com/bol-van/zapret](https://github.com/bol-van/zapret)
     zapret-discord-youtube = {
       url = "github:kartavkun/zapret-discord-youtube";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,7 +61,7 @@
   in {
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs pkgs-stable; };
 
       modules = [
         ./configuration.nix
@@ -86,7 +86,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             users.takuya = import ./home/home.nix;
-            extraSpecialArgs = { inherit inputs system; };
+            extraSpecialArgs = { inherit inputs system pkgs-stable; };
           };
         }
 
@@ -98,4 +98,3 @@
     };
   };
 }
-

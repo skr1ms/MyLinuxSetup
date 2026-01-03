@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-stable, ... }:
 
 {
   home.packages = with pkgs; [
@@ -27,8 +27,7 @@
     
     # Audio control
     pwvucontrol
-    vencord
-    vesktop
+    pkgs-stable.vesktop
     
     # Terminal & Shell
     tmux

@@ -1,5 +1,5 @@
 {
-  description = "NixOS + Caelestia-dots + meowrch themes + Flatpak + Snap + Zapret";
+  description = "NixOS + Caelestia-dots + meowrch themes + Flatpak + Snap + Zapret (Kartavkun)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -39,9 +39,18 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Zapret for russian users
+    # Based on 
+    # https://github.com/kartavkun/zapret-discord-youtube
+    # https://github.com/bol-van/zapret
+    zapret-discord-youtube = {
+      url = "github:kartavkun/zapret-discord-youtube";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-snapd, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-snapd, zapret-discord-youtube, ... }@inputs:
   let
     system = "x86_64-linux";
     
@@ -67,6 +76,8 @@
           ];
         })
 
+        zapret-discord-youtube.nixosModules.default
+
         inputs.nix-snapd.nixosModules.default
 
         home-manager.nixosModules.home-manager
@@ -87,3 +98,4 @@
     };
   };
 }
+

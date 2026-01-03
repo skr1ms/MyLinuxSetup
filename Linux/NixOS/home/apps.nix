@@ -44,6 +44,7 @@
     yaak
     insomnia
     warp-terminal
+    termius
     
     # Development
     vscode

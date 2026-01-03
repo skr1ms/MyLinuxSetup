@@ -23,6 +23,16 @@ This configuration uses a modular file structure for better maintainability and 
 
 This package requires VPN/VPS connection for installation within the Russian Federation.
 
+### Internet Censorship Circumvention (DPI Bypass)
+
+**Users in Russia**: This configuration includes a pre-configured `zapret` service to bypass DPI censorship (YouTube, Discord, etc.).
+
+**Location**: `services/zapret.nix`
+
+- **Enabled by default**: The service is active out of the box.
+- **Strategy**: Configured with `fake,multidisorder` strategy which works on most Russian ISPs (including MGTS/GPON).
+- **Customization**: If you experience issues, edit `NFQWS_OPT_DESYNC` in `services/zapret.nix`.
+
 ### Password Configuration
 
 **CRITICAL**: Change the default user password before system installation.
@@ -181,50 +191,50 @@ ALTER USER postgres WITH PASSWORD 'your_secure_password';
 
 ```
 Linux/NixOS/
-├── configuration.nix              # Main entry point, imports all modules
+├── configuration.nix             # Main entry point, imports all modules
 ├── flake.nix                     # Nix flake configuration with inputs
-├── hardware-configuration.nix     # Auto-generated, machine-specific (do not version control)
+├── hardware-configuration.nix    # Auto-generated, machine-specific (do not version control)
 │
 ├── system/                       # Core system configuration
-│   ├── boot.nix                 # Kernel, bootloader, GRUB theme
-│   ├── locale.nix               # Timezone, i18n, keyboard layout
-│   ├── networking.nix           # Network, firewall, DNS
-│   ├── security.nix             # Polkit, SSH daemon
-│   ├── power.nix                # Power management, backlight
-│   ├── hardware.nix             # Graphics, Bluetooth
-│   └── nix.nix                  # Nix settings, garbage collection, overlays
+│   ├── boot.nix                  # Kernel, bootloader, GRUB theme
+│   ├── locale.nix                # Timezone, i18n, keyboard layout
+│   ├── networking.nix            # Network, firewall, DNS
+│   ├── security.nix              # Polkit, SSH daemon
+│   ├── power.nix                 # Power management, backlight
+│   ├── hardware.nix              # Graphics, Bluetooth
+│   └── nix.nix                   # Nix settings, garbage collection, overlays
 │
 ├── services/                     # System services
-│   ├── display.nix              # SDDM, Hyprland
-│   ├── databases.nix            # PostgreSQL, MySQL, Redis (optional)
-│   ├── observability.nix        # Grafana, Prometheus, Loki (disabled by default)
-│   ├── virtualization.nix       # Docker, Podman, libvirt, VirtualBox
-│   └── system-services.nix      # D-Bus, GVFS, NetworkManager applet
+│   ├── display.nix               # SDDM, Hyprland
+│   ├── databases.nix             # PostgreSQL, MySQL, Redis (optional)
+│   ├── observability.nix         # Grafana, Prometheus, Loki (disabled by default)
+│   ├── virtualization.nix        # Docker, Podman, libvirt, VirtualBox
+│   ├── system-services.nix       # D-Bus, GVFS, NetworkManager applet
+│   └── zapret.nix                # DPI Bypass (YouTube/Discord fix)
 │
 ├── programs/                     # Program configurations
-│   ├── desktop.nix              # Thunar file manager
-│   ├── gaming.nix               # Steam, GameMode
-│   ├── shell.nix                # Fish shell
-│   ├── development.nix          # nix-ld libraries for development
-│   └── system-tools.nix         # ADB, VPN tools
+│   ├── desktop.nix               # Thunar file manager
+│   ├── gaming.nix                # Steam, GameMode
+│   ├── shell.nix                 # Fish shell
+│   ├── development.nix           # nix-ld libraries for development
+│   └── system-tools.nix          # ADB, VPN tools
 │
 ├── packages/                     # Package lists
-│   ├── system-packages.nix      # Core system utilities
-│   ├── dev-tools.nix            # Development tools (Go, Node, K8s, etc.)
-│   └── fonts.nix                # Font packages
+│   ├── system-packages.nix       # Core system utilities
+│   ├── dev-tools.nix             # Development tools (Go, Node, K8s, etc.)
+│   └── fonts.nix                 # Font packages
 │
 ├── users/                        # User management
-│   └── takuya.nix               # User configuration, groups, activation scripts
+│   └── takuya.nix                # User configuration, groups, activation scripts
 │
 ├── home/                         # Home Manager configuration
-│   ├── home.nix                 # Main home-manager entry point
-│   ├── shell.nix                # Caelestia shell configuration
-│   ├── desktop.nix              # GTK, Qt, cursor themes
-│   ├── apps.nix                 # GUI applications
-│   └── dev-packages.nix         # Python packages and development tools
+│   ├── home.nix                  # Caelestia shell configuration
+│   ├── desktop.nix               # GTK, Qt, cursor themes
+│   ├── apps.nix                  # GUI applications
+│   └── dev-packages.nix          # Python packages and development tools
 │
 ├── dots/                         # User dotfiles
-│   └── install.fish             # Dotfiles installation script
+│   └── install.fish              # Dotfiles installation script
 │
 ├── grub-theme/                   # GRUB bootloader theme
 └── Wallpapers/                   # Wallpaper collection

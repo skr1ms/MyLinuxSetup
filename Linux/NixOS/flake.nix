@@ -1,8 +1,10 @@
 {
-  description = "NixOS + Caelestia-dots + meowrch themes + Flatpak + Snap";
+  description = "NixOS + Caelestia-dots + meowrch themes + Flatpak + Snap + Zapret";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -39,9 +41,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-snapd, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-snapd, ... }@inputs:
   let
     system = "x86_64-linux";
+    
+    pkgs-stable = import nixpkgs-stable {
+      inherit system;
+      config.allowUnfree = true;
+    };
   in {
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
       inherit system;
@@ -51,7 +58,13 @@
         ./configuration.nix
 
         ({ ... }: {
-          nixpkgs.overlays = [ inputs.antigravity.overlays.default ];
+          nixpkgs.overlays = [ 
+            inputs.antigravity.overlays.default
+            
+            (final: prev: {
+              vmware-workstation = pkgs-stable.vmware-workstation;
+            })
+          ];
         })
 
         inputs.nix-snapd.nixosModules.default

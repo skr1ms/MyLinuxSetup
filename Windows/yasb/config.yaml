@@ -286,10 +286,10 @@ widgets:
         - {icon: "\uf269", launch: 'C:\Program Files\Mozilla Firefox\firefox.exe', name: "Firefox"}
   
         # Telegram
-        - {icon: "\uf2c6", launch: 'C:\Users\ilya2\AppData\Roaming\Telegram Desktop\Telegram.exe', name: "Telegram"}
+        - {icon: "\uf2c6", launch: 'C:\Users\username_here\AppData\Roaming\Telegram Desktop\Telegram.exe', name: "Telegram"}
         
         # Discord
-        - {icon: "\uf392", launch: 'C:\Users\ilya2\AppData\Local\Discord\app-1.0.9219\Discord.exe', name: "Discord"}
+        - {icon: "\uf392", launch: 'C:\Users\username_here\AppData\Local\Discord\app-1.0.9219\Discord.exe', name: "Discord"}
         
         # Cursor
         - {icon: "\ue70c", launch: 'C:\Program Files\cursor\Cursor.exe', name: "Cursor"}
@@ -313,10 +313,10 @@ widgets:
         - {icon: "\uf023", launch: 'C:\Program Files\AmneziaVPN\AmneziaVPN.exe', name: "Amnezia VPN"}
         
         # TeraBox
-        - {icon: "\uf0c2", launch: 'C:\Users\ilya2\AppData\Roaming\TeraBox\terabox.exe', name: "TeraBox"}
+        - {icon: "\uf0c2", launch: 'C:\Users\username_here\AppData\Roaming\TeraBox\terabox.exe', name: "TeraBox"}
         
         # Spotify
-        - {icon: "\uf1bc", launch: 'C:\Users\ilya2\AppData\Roaming\Spotify\Spotify.exe', name: "Spotify"}
+        - {icon: "\uf1bc", launch: 'C:\Users\username_here\AppData\Roaming\Spotify\Spotify.exe', name: "Spotify"}
         
         # Steam
         - {icon: "\uf1b6", launch: 'C:\Program Files (x86)\Steam\steam.exe', name: "Steam"}
@@ -333,7 +333,7 @@ widgets:
     options:
       label: "<span>\udb83\ude09</span>"
       image_path: 
-        - "C:\\Users\\ilya2\\Pictures\\Wallpapers"
+        - "C:\\Users\\username_here\\Pictures\\Wallpapers"
         - "D:\\Wallpapers"
       change_automatically: false
       update_interval: 3600

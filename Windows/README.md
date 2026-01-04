@@ -23,14 +23,14 @@ The installation script automatically enables long path support in Windows. This
 
 Before running the installation script, you must update all paths in `yasb/config.yaml` to match your system:
 
-1. Replace `ilya2` with your actual Windows username in application paths:
-   - Telegram: `C:\Users\ilya2\AppData\Roaming\Telegram Desktop\Telegram.exe`
-   - Discord: `C:\Users\ilya2\AppData\Local\Discord\app-1.0.9219\Discord.exe`
-   - TeraBox: `C:\Users\ilya2\AppData\Roaming\TeraBox\terabox.exe`
-   - Spotify: `C:\Users\ilya2\AppData\Roaming\Spotify\Spotify.exe`
+1. Replace `username_here` with your actual Windows username in application paths:
+   - Telegram: `C:\Users\username_here\AppData\Roaming\Telegram Desktop\Telegram.exe`
+   - Discord: `C:\Users\username_here\AppData\Local\Discord\app-1.0.9219\Discord.exe`
+   - TeraBox: `C:\Users\username_here\AppData\Roaming\TeraBox\terabox.exe`
+   - Spotify: `C:\Users\username_here\AppData\Roaming\Spotify\Spotify.exe`
 
 2. Update wallpaper paths in the `wallpapers` widget section:
-   - Default: `C:\\Users\\ilya2\\Pictures\\Wallpapers`
+   - Default: `C:\\Users\\username_here\\Pictures\\Wallpapers`
    - Add or modify paths according to your wallpaper directory locations
 
 3. Verify application executable paths in the `apps` widget section:

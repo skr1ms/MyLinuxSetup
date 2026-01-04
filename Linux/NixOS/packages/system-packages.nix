@@ -51,6 +51,7 @@
     rar
     trash-cli
     cloc
+    sbctl
     
     # CLI utilities
     tree

@@ -34,7 +34,7 @@ IMPORTANT:
 2. Restart PowerShell and run:
    komorebic quickstart
    Copy-Item -Path '.\MySetup\Windows\komorebi\*' -Destination '$env:USERPROFILE' -Recurse -Force
-   Copy-Item -Path '.\MySetup\Windows\yasb\*' -Destination '$env:USERPROFILE\.config\yasb' -Recurse -Force
+   Copy-Item -Path '.\MySetup\Windows\yasb' -Destination '$env:USERPROFILE\.config' -Recurse -Force
    komorebic enable-autostart --whkd
    komorebic start --whkd
 

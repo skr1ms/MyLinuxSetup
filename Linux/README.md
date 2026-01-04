@@ -8,10 +8,78 @@ This configuration uses a modular file structure for better maintainability and 
 
 - **Display Resolution**: Optimized for 2560x1600. Other resolutions may require adjustments in display parameters.
 - **Architecture**: x86_64 Linux
-- **Minimum Disk Space**: 200GB recommended
+- **Minimum Disk Space**: 300GB recommended
 - **Network**: Internet connection required for initial installation
 
 ## Pre-Installation Configuration
+
+### Bootloader Selection (GRUB vs Secure Boot)
+
+**Dual Boot Windows + NixOS**: Supports GRUB and Secure Boot (lanzaboote).
+
+**Location**: `system/boot/` directory, select one in `configuration.nix`
+
+#### GRUB (Default)
+
+```
+imports = [ ./system/boot/grub.nix ]; # Comment secure.nix
+```
+
+#### Secure Boot (lanzaboote)
+
+**These parameters may vary depending on the motherboards, but the essence remains the same, you need to enable secure boot and clear the keys. My example is explained based on the asus prime z790-p motherboard.**
+
+**How to Enable Secure Boot (Step-by-Step):**
+
+1. Prepare BIOS:
+
+   Enter BIOS → Secure Boot.
+
+   Select "Clear Secure Boot Keys" (Reset to Setup Mode).
+
+   Set OS Type to Windows UEFI Mode. 
+
+   Set Key Management to Custom (if available). 
+
+   Save & Exit.
+
+2. Install Lanzaboote in NixOS:
+
+   Edit configuration.nix: Enable secure.nix, disable grub.nix.
+
+   ```
+   imports = [ ./system/boot/secure.nix ]; # Comment grub.nix 
+   ```
+
+   Rebuild system:
+
+   ```
+   sudo nixos-rebuild boot --install-bootloader --flake .#NixOS
+   ```
+
+**After lanzaboote install (one-time)**:
+
+```
+sudo sbctl create-keys
+sudo sbctl enroll-keys --microsoft
+```
+
+#### Migrating from GRUB (Troubleshooting)
+
+**If GRUB still appears or boots instead of Lanzaboote:**
+
+1. Remove old GRUB entry from NVRAM:
+
+   ```
+   sudo efibootmgr              # Find BootXXXX for GRUB/NixOS
+   sudo efibootmgr -b XXXX -B   # Delete it
+   ```
+
+2. Reinstall bootloader:
+
+   ```
+   sudo nixos-rebuild boot --install-bootloader --flake .#NixOS
+   ```
 
 ### Regional Restrictions
 
@@ -217,7 +285,9 @@ Linux/NixOS/
 ├── hardware-configuration.nix    # Auto-generated, machine-specific (do not version control)
 │
 ├── system/                       # Core system configuration
-│   ├── boot.nix                  # Kernel, bootloader, GRUB theme
+    ├── boot/                     # 
+│   │   ├── grub.nix                    # Kernel, bootloader, GRUB theme
+    │   └── secure.nix                  # Secure Boot (lanzaboote) if u using dualboot with secure boot
 │   ├── locale.nix                # Timezone, i18n, keyboard layout
 │   ├── networking.nix            # Network, firewall, DNS
 │   ├── security.nix              # Polkit, SSH daemon

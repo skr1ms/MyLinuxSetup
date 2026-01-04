@@ -52,6 +52,7 @@
     trash-cli
     cloc
     sbctl
+    efibootmgr
     
     # CLI utilities
     tree

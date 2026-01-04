@@ -5,7 +5,8 @@
     ./hardware-configuration.nix
     
     # System
-    ./system/boot.nix
+    ./system/boot/grub.nix
+    # ./system/boot/secure.nix
     ./system/locale.nix
     ./system/networking.nix
     ./system/security.nix

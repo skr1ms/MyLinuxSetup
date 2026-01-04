@@ -48,9 +48,15 @@
       url = "github:kartavkun/zapret-discord-youtube";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # For users who using secure boot
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-snapd, zapret-discord-youtube, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, nix-snapd, zapret-discord-youtube, lanzaboote, ... }@inputs:
   let
     system = "x86_64-linux";
     
@@ -75,6 +81,8 @@
             })
           ];
         })
+
+        inputs.lanzaboote.nixosModules.lanzaboote
 
         zapret-discord-youtube.nixosModules.default
 

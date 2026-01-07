@@ -50,6 +50,7 @@
     code-cursor
     flutter
     android-studio-full
+    android-tools
     scrcpy
     qtcreator
     

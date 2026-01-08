@@ -61,15 +61,16 @@
     system = "x86_64-linux";
     
     pkgs-stable = import nixpkgs-stable {
-      inherit system;
+      localSystem = system;
       config.allowUnfree = true;
     };
   in {
     nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
-      inherit system;
       specialArgs = { inherit inputs pkgs-stable; };
 
       modules = [
+        { nixpkgs.hostPlatform = system; }
+
         ./configuration.nix
 
         ({ ... }: {

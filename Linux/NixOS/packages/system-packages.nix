@@ -26,6 +26,11 @@
     bash
     curl
     wget
+    lsof
+    nettools
+    iproute2
+    bind
+    nmap
     bat
     procs
     antigravity

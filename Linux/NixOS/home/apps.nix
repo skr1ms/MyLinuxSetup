@@ -6,6 +6,7 @@
     cava
     app2unit
     aubio
+    gpu-screen-recorder
     
     # Desktop utilities
     material-symbols
@@ -48,6 +49,7 @@
     # Development
     vscode
     code-cursor
+    zed-editor
     flutter
     android-studio-full
     android-tools

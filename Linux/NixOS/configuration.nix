@@ -33,6 +33,7 @@
     ./packages/system-packages.nix
     ./packages/dev-tools.nix
     ./packages/fonts.nix
+    # ./packages/ctf-tools.nix
     ./users/takuya.nix
   ];
 

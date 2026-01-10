@@ -145,6 +145,18 @@ ALTER USER postgres WITH PASSWORD 'your_secure_password';
 \q
 ```
 
+### CTF Tools (Optional)
+
+**For CTF participants**: This configuration includes a comprehensive set of CTF tools, but the package list is commented out by default (based on [Nix Security Tool Box](https://fabaff.github.io/nix-security-box/list)).
+
+**Location**: `packages/ctf-tools.nix`, import in `configuration.nix` line ~36
+
+To enable CTF tools, uncomment the import in `configuration.nix`:
+
+```
+./packages/ctf-tools.nix
+```
+
 ## Installation Procedures
 
 ### Method 1: Fresh System Installation
